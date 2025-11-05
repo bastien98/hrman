@@ -1,11 +1,7 @@
 import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 from strands.telemetry import StrandsTelemetry
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 from dotenv import load_dotenv
 load_dotenv()
 
