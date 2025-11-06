@@ -1,7 +1,7 @@
 from dataclasses import field, dataclass
-from src.infra.utils import format_schema_for_llm, get_table_schema
+from src.infra.utils import format_schema_for_llm, _get_table_schema
 
-EMPLOYEE_SCHEMA_STR = format_schema_for_llm(get_table_schema('employees'))
+
 
 
 @dataclass

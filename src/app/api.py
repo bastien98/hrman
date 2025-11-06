@@ -1,13 +1,12 @@
 import logging
-
-from strands.telemetry import StrandsTelemetry
-
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-from src.services.agent_service import AgentService
 from dotenv import load_dotenv
 load_dotenv()
+
+from strands.telemetry import StrandsTelemetry
 from fastapi import FastAPI, Depends
 from src.app.dependencies import get_agent_service
+from src.services.agent_service import AgentService
 
 app = FastAPI(title="Agent Chat API")
 # Setup telemetry

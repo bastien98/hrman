@@ -4,8 +4,11 @@ from strands.models.openai import OpenAIModel
 from src.agents.agent_factory import create_agent
 from src.agents.agent_registery import AgentRegistry
 from src.agents.prompts.context_agent import CONTEXT_AGENT_SYSTEM_PROMPT
+from src.infra.utils import retrieve_table_schema_str
 from src.services.agent_service import AgentService
 
+#Employee schema string
+EMPLOYEE_SCHEMA_STR = retrieve_table_schema_str("employees")
 
 #Observability config (langfuse)
 LANGFUSE_AUTH = base64.b64encode(

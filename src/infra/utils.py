@@ -22,7 +22,7 @@ def _get_engine():
     return create_engine(connection_string)
 
 
-def get_table_schema(table_name: str) -> Dict[str, Any]:
+def _get_table_schema(table_name: str) -> Dict[str, Any]:
     engine = _get_engine()
     metadata: MetaData = MetaData()
     metadata.reflect(bind=engine, only=[table_name])
@@ -44,7 +44,7 @@ def get_table_schema(table_name: str) -> Dict[str, Any]:
     return {"table_name": table_name, "columns": columns_metadata}
 
 
-def format_schema_for_llm(metadata):
+def _format_schema_for_llm(metadata):
     prompt = f"The table `{metadata['table_name']}` has the following columns:\n"
     for col in metadata['columns']:
         desc = col['description'] if col['description'] else "No description"
@@ -52,3 +52,7 @@ def format_schema_for_llm(metadata):
     prompt += "\nUse this schema to answer queries about this table."
     logging.info("Generated EMPLOYEE_SCHEMA_STR schema prompt:\n%s", prompt)
     return prompt
+
+
+def retrieve_table_schema_str(name: str):
+    return _format_schema_for_llm(_get_table_schema(name))
